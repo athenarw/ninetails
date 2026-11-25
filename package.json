@@ -1,6 +1,6 @@
 {
   "name": "ninetails",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "description": "Firefox extension that sorts tabs into named windows, closes idle duplicates and keeps windows in order. Local-only.",
   "scripts": {
