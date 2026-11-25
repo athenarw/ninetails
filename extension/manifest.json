@@ -1,0 +1,45 @@
+{
+  "manifest_version": 2,
+  "name": "Ninetails",
+  "version": "0.1.2",
+  "description": "Sorts tabs into named windows by site, closes idle duplicates and keeps windows in order. Runs entirely on your computer; makes no network requests.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{4dfcb2fc-58be-4d1c-ae88-2b8bdfce094e}",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+  "icons": {
+    "48": "icons/ninetails.svg",
+    "96": "icons/ninetails.svg"
+  },
+  "permissions": ["tabs", "storage", "alarms", "sessions", "menus"],
+  "background": {
+    "scripts": ["common/rules.js", "background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_title": "Ninetails",
+    "default_icon": "icons/ninetails.svg",
+    "default_popup": "popup/popup.html"
+  },
+  "page_action": {
+    "default_title": "Ninetails: tidy now",
+    "default_icon": "icons/tidy.svg",
+    "show_matches": ["<all_urls>"],
+    "pinned": true
+  },
+  "commands": {
+    "tidy-now": {
+      "suggested_key": { "default": "Alt+Shift+9" },
+      "description": "Tidy now: move, de-duplicate and sort tabs"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  }
+}

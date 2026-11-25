@@ -1,0 +1,17 @@
+node_modules/
+dist/
+web-ext-artifacts/
+*.xpi
+*.pdb
+*.tmp*
+.env
+.env.*
+.amo-upload-uuid
+.DS_Store
+Thumbs.db
+
+# your real profiles: keep them out of the public repo
+profiles-private/
+
+# developer notes: kept on this computer only
+private/

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <g fill="#E8833A" stroke="#9C4A14" stroke-width="2" stroke-linejoin="round">
+    <path id="t" d="M48 70 C40 52 38 30 48 8 C58 30 56 52 48 70 Z"/>
+    <use href="#t" transform="rotate(-80 48 70)"/>
+    <use href="#t" transform="rotate(-60 48 70)"/>
+    <use href="#t" transform="rotate(-40 48 70)"/>
+    <use href="#t" transform="rotate(-20 48 70)"/>
+    <use href="#t" transform="rotate(20 48 70)"/>
+    <use href="#t" transform="rotate(40 48 70)"/>
+    <use href="#t" transform="rotate(60 48 70)"/>
+    <use href="#t" transform="rotate(80 48 70)"/>
+  </g>
+  <circle cx="48" cy="72" r="12" fill="#F7D9A8" stroke="#9C4A14" stroke-width="2"/>
+</svg>

@@ -1,0 +1,26 @@
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+header.top { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); padding: 10px 0; }
+header.top h1 { font-size: 20px; }
+main { padding-top: 16px; padding-bottom: 48px; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-bottom: 14px; }
+.badge { font-size: 11px; padding: 1px 8px; border-radius: 999px; background: var(--chip); color: var(--chip-ink); }
+.cats { margin-top: 10px; }
+.cat { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-top: 8px; }
+.cat.off { opacity: .6; }
+.cat .name { font-weight: 600; font-size: 15px; border-color: transparent; background: transparent; padding: 3px 6px; width: 15em; max-width: 100%; }
+.cat .name:hover, .cat .name:focus { border-color: var(--line); background: var(--panel); }
+.cat .pats { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 6px; }
+.cat .addpat { display: flex; gap: 6px; }
+.cat .addpat input { flex: 1 1 auto; }
+.winstate { font-size: 12px; color: var(--muted); }
+.winstate.has { color: var(--ok); }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; margin-top: 10px; align-items: center; }
+.grid .field input[type="number"] { width: 5.5em; }
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .cat .name { width: 100%; } }
+table.wins, table.help { width: 100%; border-collapse: collapse; }
+table.wins td, table.help td { padding: 6px 4px; border-top: 1px solid var(--line); vertical-align: middle; }
+table.wins td.t { max-width: 0; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 12.5px; background: var(--chip); padding: 1px 5px; border-radius: 4px; }
+.log { max-height: 320px; overflow: auto; margin-top: 8px; }
+.log .item { display: flex; gap: 8px; align-items: center; padding: 5px 0; border-top: 1px solid var(--line); }
+.log .item .t { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

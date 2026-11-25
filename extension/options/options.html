@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ninetails Settings</title>
+  <link rel="icon" href="../icons/ninetails.svg">
+  <link rel="stylesheet" href="../common/ui.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap row">
+      <img src="../icons/ninetails.svg" alt="" width="34" height="34">
+      <h1>Ninetails</h1>
+      <span class="grow"></span>
+      <span id="tick-status" class="muted small"></span>
+      <button id="tidy" class="primary" title="Move, de-duplicate and sort now, ignoring the move delay">Tidy now</button>
+      <label class="switch" title="Pause or resume everything">
+        <input type="checkbox" id="enabled"><span class="track"></span><span id="enabled-label">On</span>
+      </label>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel" id="profiles">
+      <div class="row">
+        <h2>Profile</h2>
+        <select id="profile-select" aria-label="Active profile"></select>
+        <span id="default-badge" class="badge">default</span>
+        <span class="grow"></span>
+        <button id="p-default" title="Use this profile whenever Firefox starts">Set as default</button>
+        <button id="p-new">New</button>
+        <button id="p-dup">Duplicate</button>
+        <button id="p-rename">Rename</button>
+        <button id="p-delete" class="danger">Delete</button>
+      </div>
+      <div class="row small" style="margin-top:10px">
+        <label class="switch"><input type="checkbox" id="start-default"><span class="track"></span>Switch to the default profile when Firefox starts</label>
+        <span class="grow"></span>
+        <button id="p-export">Export profile…</button>
+        <button id="p-import">Import profile…</button>
+        <input type="file" id="p-import-file" accept=".json,application/json" hidden>
+        <button id="p-bundled" title="Add profiles shipped in the extension's profiles/ folder that you don't have yet">Load bundled profiles</button>
+      </div>
+      <div id="profile-msg" class="small"></div>
+    </section>
+
+    <section class="panel">
+      <div class="row">
+        <h2>Windows</h2>
+        <span class="muted small">Checked top to bottom; the first window with a matching rule wins. Order here is also the sort order.</span>
+      </div>
+      <div id="cats" class="cats"></div>
+      <form id="add-cat" class="row" style="margin-top:12px">
+        <input type="text" id="new-cat-name" placeholder="New window name" maxlength="60" class="grow" aria-label="New window name">
+        <button class="primary" type="submit">Add window</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Test a page</h2>
+      <form id="test" class="row" style="margin-top:8px">
+        <input type="url" id="test-url" placeholder="https://…" class="grow" aria-label="URL to test">
+        <input type="text" id="test-title" placeholder="Tab title (optional)" aria-label="Tab title">
+        <button type="submit">Test</button>
+      </form>
+      <div id="test-result" class="small" style="margin-top:6px"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Open windows</h2>
+      <p class="muted small">Tell Ninetails which window is which. It remembers this across restarts and labels each window's title bar, e.g. <code>[Research] …</code>.
+        You can also do it from inside any window: click the Ninetails toolbar button → <b>This Firefox window is</b>, or right-click a tab → <b>Ninetails → Make this window</b>.</p>
+      <div id="wins"></div>
+      <div class="row" style="margin-top:8px"><button id="rebind">Re-detect windows</button></div>
+    </section>
+
+    <section class="panel" id="behavior">
+      <h2>Behavior <span class="muted small">(saved per profile)</span></h2>
+      <div class="grid">
+        <label class="switch"><input type="checkbox" data-s="features.move"><span class="track"></span>Move tabs to their window</label>
+        <label class="field">after <input type="number" min="0" max="1440" data-s="moveDelayMin"> minutes in the wrong window</label>
+
+        <label class="switch"><input type="checkbox" data-s="features.dedupe"><span class="track"></span>Close duplicate tabs</label>
+        <label class="field">once idle for <input type="number" min="0" max="10080" data-s="dedupeIdleMin"> minutes</label>
+
+        <label class="switch"><input type="checkbox" data-s="features.sort"><span class="track"></span>Keep tabs sorted</label>
+        <label class="field">by
+          <select data-s="sortMode">
+            <option value="rule">window rule order, then site</option>
+            <option value="domain">site name (A–Z)</option>
+            <option value="recent">most recently used first</option>
+            <option value="opened">order opened</option>
+          </select>
+        </label>
+
+        <label class="switch"><input type="checkbox" data-s="sortFocusedWindow"><span class="track"></span>Also sort the window I'm using</label>
+        <label class="switch"><input type="checkbox" data-s="sortUnboundWindows"><span class="track"></span>Also sort windows with no category</label>
+        <label class="switch"><input type="checkbox" data-s="createWindows"><span class="track"></span>Open a window for a category that has none</label>
+        <label class="switch"><input type="checkbox" data-s="autoBind"><span class="track"></span>Guess which window is which from its tabs</label>
+        <label class="switch"><input type="checkbox" data-s="respectTabGroups"><span class="track"></span>Leave tabs in Firefox tab groups alone</label>
+        <label class="switch"><input type="checkbox" data-s="ignoreHashInDupes"><span class="track"></span>Ignore #anchors when finding duplicates</label>
+        <label class="switch"><input type="checkbox" data-s="stripTrackingParams"><span class="track"></span>Ignore tracking parameters (utm_…) in duplicates</label>
+        <label class="field">At most <input type="number" min="1" max="500" data-s="maxActionsPerTick"> moves/closes per minute</label>
+      </div>
+      <p class="muted small">Never touched: pinned tabs, the tab showing in each window, tabs playing sound, and tabs you've dragged somewhere by hand.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Never touch</h2>
+      <p class="muted small">Pages matching these patterns are never moved, sorted into a category or closed as duplicates.</p>
+      <div id="exclude"></div>
+    </section>
+
+    <section class="panel" id="autoclose">
+      <div class="row">
+        <h2>Auto-close</h2>
+        <label class="switch"><input type="checkbox" id="ac-enabled"><span class="track"></span></label>
+        <label class="field small">close after <input type="number" id="ac-minutes" min="1" max="10080" style="width:5.5em"> minutes unused</label>
+      </div>
+      <p class="muted small">For throwaway pages like Zoom's “launch meeting” tabs. A matching tab closes once it's been open and unused for that long.
+        Ninetails skips it while you're looking at it or while it's playing sound, and closed tabs show up under Closed tabs below.
+        Zoom's in-browser meeting client (<code>zoom.us/wc/…</code>) isn't listed, so a meeting you join in Firefox won't be closed.</p>
+      <div id="ac-pats"></div>
+    </section>
+
+    <section class="panel">
+      <div class="row"><h2>Closed tabs</h2><span class="grow"></span><button id="clear-log">Clear list</button></div>
+      <div id="log" class="log"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Pattern help</h2>
+      <table class="help">
+        <tr><td><code>notion.so</code></td><td>the site and all its subdomains</td></tr>
+        <tr><td><code>docs.google.com/spreadsheets</code></td><td>site + start of the path</td></tr>
+        <tr><td><code>https://www.google.*/search*</code></td><td>wildcard on the full address (<code>*</code> = anything)</td></tr>
+        <tr><td><code>file:///*.pdf*</code></td><td>PDFs opened from your computer</td></tr>
+        <tr><td><code>title:Project Dashboard</code></td><td>tab title contains this text</td></tr>
+        <tr><td><code>re:^https://cad\.onshape\.com/documents/abc</code></td><td>regular expression on the full address</td></tr>
+      </table>
+      <p class="muted small">Tip: right-click any tab → <b>Ninetails</b> → <b>Always send this site to</b> adds a rule without coming here.</p>
+    </section>
+  </main>
+
+  <script src="../common/rules.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

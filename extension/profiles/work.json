@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "id": "work",
+  "name": "Work",
+  "config": {
+    "categories": [
+      {
+        "id": "logistics",
+        "name": "Logistics",
+        "enabled": true,
+        "patterns": [
+          "linear.app",
+          "notion.so",
+          "notion.site",
+          "docs.google.com/spreadsheets",
+          "title:.xlsx"
+        ]
+      },
+      {
+        "id": "email",
+        "name": "Email",
+        "enabled": true,
+        "patterns": [
+          "mail.google.com",
+          "outlook.office.com",
+          "outlook.office365.com",
+          "outlook.live.com",
+          "outlook.cloud.microsoft"
+        ]
+      },
+      {
+        "id": "prognostication",
+        "name": "Prognostication",
+        "enabled": true,
+        "patterns": [
+          "claude.ai",
+          "calendar.google.com"
+        ]
+      },
+      {
+        "id": "research",
+        "name": "Research",
+        "enabled": true,
+        "patterns": [
+          "file:///*.pdf*",
+          "nature.com",
+          "science.org",
+          "cell.com",
+          "sciencedirect.com",
+          "pnas.org",
+          "biorxiv.org",
+          "medrxiv.org",
+          "arxiv.org",
+          "elifesciences.org",
+          "jneurosci.org",
+          "eneuro.org",
+          "pubmed.ncbi.nlm.nih.gov",
+          "ncbi.nlm.nih.gov/pmc",
+          "pmc.ncbi.nlm.nih.gov",
+          "journals.plos.org",
+          "frontiersin.org",
+          "iopscience.iop.org",
+          "ieeexplore.ieee.org",
+          "link.springer.com",
+          "onlinelibrary.wiley.com",
+          "academic.oup.com",
+          "journals.physiology.org",
+          "annualreviews.org",
+          "openreview.net",
+          "proceedings.neurips.cc",
+          "doi.org"
+        ]
+      },
+      {
+        "id": "overview",
+        "name": "Overview",
+        "enabled": true,
+        "patterns": [
+          "wikipedia.org",
+          "youtube.com",
+          "youtu.be",
+          "perplexity.ai",
+          "elicit.com",
+          "consensus.app"
+        ]
+      },
+      {
+        "id": "open-questions",
+        "name": "Open Questions",
+        "enabled": true,
+        "patterns": [
+          "google.com/search",
+          "https://www.google.*/search*"
+        ]
+      },
+      {
+        "id": "onshape",
+        "name": "Onshape",
+        "enabled": true,
+        "patterns": [
+          "onshape.com"
+        ]
+      },
+      {
+        "id": "code",
+        "name": "Code",
+        "enabled": true,
+        "patterns": [
+          "github.com",
+          "githubusercontent.com",
+          "stackoverflow.com",
+          "stackexchange.com",
+          "superuser.com",
+          "serverfault.com",
+          "askubuntu.com",
+          "readthedocs.io",
+          "readthedocs.org",
+          "docs.python.org",
+          "developer.mozilla.org",
+          "pypi.org",
+          "numpy.org",
+          "scipy.org",
+          "pandas.pydata.org",
+          "matplotlib.org",
+          "pytorch.org",
+          "docs.rs",
+          "npmjs.com"
+        ]
+      },
+      {
+        "id": "random",
+        "name": "Random",
+        "enabled": true,
+        "catchAll": true,
+        "patterns": []
+      }
+    ],
+    "settings": {
+      "features": {
+        "move": true,
+        "dedupe": true,
+        "sort": true
+      },
+      "moveDelayMin": 10,
+      "dedupeIdleMin": 60,
+      "sortMode": "rule",
+      "sortFocusedWindow": false,
+      "sortUnboundWindows": false,
+      "createWindows": true,
+      "autoBind": true,
+      "respectTabGroups": true,
+      "ignoreHashInDupes": true,
+      "stripTrackingParams": true,
+      "maxActionsPerTick": 40,
+      "exclude": []
+    }
+  }
+}
