@@ -153,7 +153,9 @@ function createBrowser(extDir) {
 
   const fetchImpl = async (url) => {
     const rel = url.replace("moz-extension://test-uuid/", "");
-    const text = fs.readFileSync(path.join(extDir, rel), "utf8");
+    // the engine tests use a fixed set of profiles, independent of the shipped examples
+    const fixture = rel.startsWith("profiles/") ? path.join(__dirname, "fixtures", rel) : null;
+    const text = fs.readFileSync(fixture && fs.existsSync(fixture) ? fixture : path.join(extDir, rel), "utf8");
     return { json: async () => JSON.parse(text) };
   };
 

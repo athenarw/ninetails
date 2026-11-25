@@ -340,7 +340,7 @@ test("auto-close: Zoom launch pages close after 10 unused minutes, meetings in F
 
 test("upgrading adds Random to an existing Work profile once", async () => {
   const fs2 = require("node:fs");
-  const work = JSON.parse(fs2.readFileSync(path.join(EXT, "profiles/work.json"), "utf8"));
+  const work = JSON.parse(fs2.readFileSync(path.join(__dirname, "fixtures/profiles/work.json"), "utf8"));
   work.config.categories = work.config.categories.filter((c) => !c.catchAll);
   const { msg } = boot((b) => {
     b._store["nt.profiles"] = { work };

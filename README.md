@@ -8,13 +8,13 @@ everything mixed together, the same page open five times, and a browser that
 slows to a crawl.
 
 Ninetails keeps the useful part and handles the mess. You give your windows
-names, like *Email*, *Research*, *Code* or *Random*, and say which websites
+names, like *Communication*, *Projects*, *Reading* or *Random*, and say which websites
 belong in each. Ninetails then quietly keeps things where they belong.
 
 ## What it does
 
 - **Files tabs into the right window.** Open a GitHub link from your email,
-  and a few minutes later it moves to your *Code* window. You choose how long
+  and a few minutes later it moves to your *Projects* window. You choose how long
   it waits.
 - **Closes duplicates.** If the same page is open twice and one copy hasn't
   been used in a while, the extra copy is closed.
@@ -24,7 +24,7 @@ belong in each. Ninetails then quietly keeps things where they belong.
   meeting" tabs and empty New Tab pages after 10 minutes. You can also have
   it close tabs in any window that haven't been used for days.
 - **Labels your windows.** Each window's title bar shows its name, for
-  example `[Research] A paper title — Mozilla Firefox`, so you can tell them
+  example `[Reading] An article title — Mozilla Firefox`, so you can tell them
   apart in the taskbar.
 - **Remembers which window is which** after you restart Firefox.
 - **Profiles.** Keep one setup for work and another for home, and switch
@@ -80,8 +80,16 @@ way. Your settings are kept.
 
 1. **Open the settings:** click the Ninetails button in the toolbar, then
    **Settings**.
-2. **Look at your windows.** Ninetails starts with an example setup: Email,
-   Research, Code, Overview, Random and others. Rename, delete or add
+2. **Look at your windows.** Ninetails starts with a simple example setup
+   of three windows plus a catch-all:
+   - **Work** profile: *Communication* (email, calendar, chat), *Projects*
+     (docs, project tools, GitHub, AI assistants), *Reading* (searches,
+     Wikipedia, papers, PDFs, YouTube) and *Random*.
+   - **Personal** profile: *Messages*, *Feeds* (social, news, video),
+     *Errands* (shopping, maps, travel) and *Random*.
+
+   Payment pages (PayPal, checkout and payment pages) start on the
+   never-touch list. Rename, delete or add
    windows to suit how you work, and add the websites that belong in each.
 3. **Tell it which Firefox window is which.** On each window's card, choose
    one of your open Firefox windows or click **Open window**. You can also
@@ -147,10 +155,10 @@ it would be auto-closed.
 
 The **Auto-close** section lists pages to close once they've sat unused for a
 while (10 minutes by default). It comes set up for Zoom's launch and
-post-meeting pages. A Zoom meeting you've joined inside Firefox is not on
-the list, so it won't be closed. Add anything else you like, such as
-`about:newtab` for empty New Tab pages or `*/whatsnew*` for Firefox's
-"What's New" page.
+post-meeting pages, empty New Tab pages (`about:newtab`) and Firefox's
+"What's New" page (`*/whatsnew*`). A Zoom meeting you've joined inside
+Firefox is not on the list, so it won't be closed. Add anything else you
+like.
 
 ### Behavior
 

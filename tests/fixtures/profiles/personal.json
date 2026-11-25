@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "id": "personal",
+  "name": "Personal",
+  "config": {
+    "categories": [
+      {
+        "id": "email",
+        "name": "Email",
+        "enabled": true,
+        "patterns": [
+          "mail.google.com",
+          "outlook.live.com"
+        ]
+      },
+      {
+        "id": "prognostication",
+        "name": "Prognostication",
+        "enabled": true,
+        "patterns": [
+          "claude.ai",
+          "calendar.google.com"
+        ]
+      },
+      {
+        "id": "overview",
+        "name": "Overview",
+        "enabled": true,
+        "patterns": [
+          "wikipedia.org",
+          "youtube.com",
+          "youtu.be"
+        ]
+      },
+      {
+        "id": "open-questions",
+        "name": "Open Questions",
+        "enabled": true,
+        "patterns": [
+          "google.com/search",
+          "https://www.google.*/search*"
+        ]
+      },
+      {
+        "id": "onshape",
+        "name": "Onshape",
+        "enabled": true,
+        "patterns": [
+          "onshape.com"
+        ]
+      },
+      {
+        "id": "code",
+        "name": "Code",
+        "enabled": true,
+        "patterns": [
+          "github.com",
+          "stackoverflow.com",
+          "stackexchange.com",
+          "readthedocs.io"
+        ]
+      },
+      {
+        "id": "random",
+        "name": "Random",
+        "enabled": true,
+        "catchAll": true,
+        "patterns": []
+      }
+    ],
+    "settings": {
+      "features": {
+        "move": true,
+        "dedupe": true,
+        "sort": true
+      },
+      "moveDelayMin": 10,
+      "dedupeIdleMin": 60,
+      "sortMode": "rule",
+      "exclude": []
+    }
+  }
+}

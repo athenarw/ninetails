@@ -16,38 +16,58 @@ test("bundled profiles normalize and every pattern compiles", () => {
   }
 });
 
-test("work profile routes its sites", () => {
-  const { classify } = NT.buildClassifier(NT.normalizeConfig(work.config));
+test("example Work profile routes common sites", () => {
+  const { classify, isExcluded, isAutoClose } = NT.buildClassifier(NT.normalizeConfig(work.config));
   const cases = [
-    ["https://linear.app/team/issue/ABC-1", "", "logistics"],
-    ["https://www.notion.so/Page-123", "", "logistics"],
-    ["https://docs.google.com/spreadsheets/d/abc/edit", "", "logistics"],
-    ["https://mail.google.com/mail/u/0/#inbox", "", "email"],
-    ["https://outlook.office.com/mail/", "", "email"],
-    ["https://claude.ai/new", "", "prognostication"],
-    ["https://calendar.google.com/calendar/r", "", "prognostication"],
-    ["https://www.nature.com/articles/s41586-024-0001", "", "research"],
-    ["https://www.biorxiv.org/content/10.1101/2024", "", "research"],
-    ["file:///C:/Users/me/Downloads/paper.pdf", "", "research"],
-    ["file:///C:/Users/me/Downloads/paper.pdf#page=3", "", "research"],
-    ["https://en.wikipedia.org/wiki/Fox", "", "overview"],
-    ["https://www.youtube.com/watch?v=x", "", "overview"],
-    ["https://www.google.com/search?q=guide+tube", "", "open-questions"],
-    ["https://www.google.co.uk/search?q=x", "", "open-questions"],
-    ["https://cad.onshape.com/documents/1", "Arbor v3", "onshape"],
-    ["https://github.com/gumyr/build123d", "", "code"],
-    ["https://stackoverflow.com/questions/1", "", "code"],
-    ["https://math.stackexchange.com/questions/1", "", "code"],
-    ["https://build123d.readthedocs.io/en/latest/", "", "code"]
+    ["https://mail.google.com/mail/u/0/#inbox", "communication"],
+    ["https://calendar.google.com/calendar/r", "communication"],
+    ["https://app.slack.com/client/T1/C1", "communication"],
+    ["https://docs.google.com/spreadsheets/d/abc/edit", "projects"],
+    ["https://www.notion.so/Page-123", "projects"],
+    ["https://github.com/mozilla/web-ext", "projects"],
+    ["https://claude.ai/new", "projects"],
+    ["https://chatgpt.com/c/1", "projects"],
+    ["https://www.google.com/search?q=tabs", "reading"],
+    ["https://en.wikipedia.org/wiki/Fox", "reading"],
+    ["file:///C:/Users/me/Downloads/paper.pdf", "reading"],
+    ["https://www.youtube.com/watch?v=x", "reading"],
+    ["https://stackoverflow.com/questions/1", "reading"],
+    ["https://www.amazon.com/dp/1", "random"],
+    ["https://www.google.com/maps/place/x", "random"]
   ];
-  for (const [url, title, want] of cases) {
-    const r = classify(url, title);
-    assert.equal(r && r.catId, want, url + " " + title);
+  for (const [url, want] of cases) assert.equal(classify(url, "").catId, want, url);
+  assert.ok(isExcluded("https://www.paypal.com/checkout", ""));
+  assert.ok(isExcluded("https://shop.example/cart", "Checkout - Example Shop"));
+  assert.ok(isAutoClose("about:newtab", "New Tab"));
+  assert.ok(isAutoClose("https://example.zoom.us/j/123#success", ""));
+});
+
+test("example Personal profile routes common sites", () => {
+  const { classify } = NT.buildClassifier(NT.normalizeConfig(personal.config));
+  const cases = [
+    ["https://mail.google.com/mail/u/0/", "messages"],
+    ["https://web.whatsapp.com/", "messages"],
+    ["https://www.reddit.com/r/firefox/", "feeds"],
+    ["https://bsky.app/profile/x", "feeds"],
+    ["https://www.youtube.com/watch?v=x", "feeds"],
+    ["https://www.amazon.com/dp/1", "errands"],
+    ["https://www.google.com/maps/place/x", "errands"],
+    ["https://www.airbnb.com/rooms/1", "errands"],
+    ["https://claude.ai/new", "random"],
+    ["https://www.google.com/search?q=x", "random"],
+    ["https://en.wikipedia.org/wiki/Fox", "random"]
+  ];
+  for (const [url, want] of cases) assert.equal(classify(url, "").catId, want, url);
+});
+
+test("both example profiles have 3 windows plus Random, idle-close off", () => {
+  for (const p of [work, personal]) {
+    const cats = NT.normalizeConfig(p.config).categories;
+    assert.equal(cats.length, 4, p.id);
+    assert.equal(cats[3].name, "Random");
+    assert.ok(cats[3].catchAll);
+    assert.ok(cats.every((c) => !c.closeIdleMin), "no idle-close by default");
   }
-  assert.equal(classify("https://www.google.com/maps", "").catId, "random");
-  assert.equal(classify("https://docs.google.com/document/d/x", "").catId, "random");
-  assert.equal(classify("about:newtab", ""), null);
-  assert.equal(classify("https://notnotion.so/", "").catId, "random", "domain match must be on a dot boundary");
 });
 
 test("pattern kinds", () => {

@@ -5,67 +5,68 @@
   "config": {
     "categories": [
       {
-        "id": "email",
-        "name": "Email",
+        "id": "messages",
+        "name": "Messages",
         "enabled": true,
         "patterns": [
           "mail.google.com",
-          "outlook.live.com"
+          "outlook.live.com",
+          "mail.yahoo.com",
+          "mail.proton.me",
+          "calendar.google.com",
+          "web.whatsapp.com",
+          "messenger.com",
+          "discord.com"
         ]
       },
       {
-        "id": "prognostication",
-        "name": "Prognostication",
+        "id": "feeds",
+        "name": "Feeds",
         "enabled": true,
         "patterns": [
-          "claude.ai",
-          "calendar.google.com"
-        ]
-      },
-      {
-        "id": "overview",
-        "name": "Overview",
-        "enabled": true,
-        "patterns": [
-          "wikipedia.org",
+          "reddit.com",
+          "x.com",
+          "bsky.app",
+          "mastodon.social",
+          "threads.net",
+          "facebook.com",
+          "instagram.com",
+          "news.google.com",
+          "apnews.com",
+          "bbc.com",
+          "nytimes.com",
           "youtube.com",
-          "youtu.be"
+          "youtu.be",
+          "twitch.tv",
+          "netflix.com",
+          "spotify.com"
         ]
       },
       {
-        "id": "open-questions",
-        "name": "Open Questions",
+        "id": "errands",
+        "name": "Errands",
         "enabled": true,
         "patterns": [
-          "google.com/search",
-          "https://www.google.*/search*"
-        ]
-      },
-      {
-        "id": "onshape",
-        "name": "Onshape",
-        "enabled": true,
-        "patterns": [
-          "onshape.com"
-        ]
-      },
-      {
-        "id": "code",
-        "name": "Code",
-        "enabled": true,
-        "patterns": [
-          "github.com",
-          "stackoverflow.com",
-          "stackexchange.com",
-          "readthedocs.io"
+          "amazon.com",
+          "ebay.com",
+          "etsy.com",
+          "target.com",
+          "walmart.com",
+          "costco.com",
+          "google.com/maps",
+          "google.com/travel",
+          "airbnb.com",
+          "booking.com",
+          "expedia.com",
+          "kayak.com"
         ]
       },
       {
         "id": "random",
         "name": "Random",
         "enabled": true,
-        "catchAll": true,
-        "patterns": []
+        "patterns": [],
+        "catchAll": true
       }
     ],
     "settings": {
@@ -77,7 +78,33 @@
       "moveDelayMin": 10,
       "dedupeIdleMin": 60,
       "sortMode": "rule",
-      "exclude": []
+      "sortFocusedWindow": false,
+      "sortUnboundWindows": false,
+      "createWindows": true,
+      "autoBind": true,
+      "respectTabGroups": true,
+      "ignoreHashInDupes": true,
+      "stripTrackingParams": true,
+      "maxActionsPerTick": 40,
+      "exclude": [
+        "paypal.com",
+        "title:Checkout",
+        "title:Payment"
+      ],
+      "autoClose": {
+        "enabled": true,
+        "minutes": 10,
+        "patterns": [
+          "zoom.us/j/",
+          "zoom.us/s/",
+          "zoom.us/w/",
+          "zoom.us/my/",
+          "zoom.us/postattendee",
+          "zoom.us/launch",
+          "about:newtab",
+          "*/whatsnew*"
+        ]
+      }
     }
   }
 }
